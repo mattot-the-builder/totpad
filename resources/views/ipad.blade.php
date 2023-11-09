@@ -23,11 +23,12 @@
                                 <td>{{ $ipad->serial_number }}</td>
                                 <td>
                                     <div
-                                        class="badge badge-lg {{ $ipad->isAvailable ? 'badge-success': 'badge-error' }}">
-                                        <svg class="w-2 h-2 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        class="badge badge-lg {{ $ipad->user->status === 'checkin' ? 'badge-success' : 'badge-error' }}">
+                                        <svg class="w-2 h-2 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512">
                                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
                                         </svg>
-                                        {{ $ipad->isAvailable ? 'Checked In': 'Checked Out' }}
+                                        {{ $ipad->user->status }}
                                     </div>
                                 </td>
                             </tr>
