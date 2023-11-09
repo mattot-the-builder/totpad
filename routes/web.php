@@ -22,7 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [CheckinController::class, 'dashboard'])->name('student.dashboard');
+
+Route::prefix('/student')->group(function () {
+    Route::get('/dashboard', [CheckinController::class, 'dashboard'])->name('student.dashboard');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

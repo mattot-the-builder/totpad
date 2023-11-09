@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CheckinController extends Controller
 {
+    public function dashboard()
+    {
+        return view('student.dashboard');
+    }
+
     public function checkin()
     {
         $user = auth()->user();
