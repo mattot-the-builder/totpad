@@ -19,7 +19,15 @@
                                 <th>{{ $student->id }}</th>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
-                                <td>{{ $student->checkinLogs()->latest()->first()->action === 'checkin' ? 'Checked In' : 'Checked Out' }}</td>
+                                <td>
+                                    <div
+                                        class="badge badge-lg {{ $student->status === 'checkin'? 'badge-success': 'badge-error' }}">
+                                        <svg class="w-2 h-2 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+                                        </svg>
+                                        {{ $student->status }}
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -8,10 +8,10 @@
                 </svg>
             </label>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a href="{{route('dashboard')}}">Dashboard</a></li>
-                <li><a href="{{route('checkin-log.index')}}">Check In Log</a></li>
-                <li><a href="{{route('student.index')}}">Student List</a></li>
-                <li><a href="{{route('ipad.index')}}">Ipad List</a></li>
+                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('checkin-log.index') }}">Check In Log</a></li>
+                <li><a href="{{ route('student.index') }}">Student List</a></li>
+                <li><a href="{{ route('ipad.index') }}">Ipad List</a></li>
             </ul>
         </div>
     </div>
@@ -44,7 +44,12 @@
             </label>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                    <a class="justify-between">
+                    <span class="justify-between">
+                    {{ auth()->user()->name }}
+                    </span>
+                <li>
+                <li>
+                    <a href="{{ route('profile.edit') }}" class="justify-between">
                         Profile
                     </a>
                 </li>

@@ -20,7 +20,6 @@ class IpadFactory extends Factory
             'user_id' => fake()->numberBetween(1, 100),
             'serial_number' => fake()->ean8(),
             'model' => fake()->word(),
-            'isAvailable' => fake()->boolean(0.7),
         ];
     }
 }

@@ -15,7 +15,6 @@ return new class () extends Migration {
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('serial_number');
             $table->string('model');
-            $table->boolean('isAvailable')->default(false);
             $table->timestamps();
         });
     }

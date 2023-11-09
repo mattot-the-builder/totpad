@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckinController;
 use App\Http\Controllers\CheckinLogController;
 use App\Http\Controllers\IpadController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('checkin-log', CheckinLogController::class);
     Route::resource('student', StudentController::class);
     Route::resource('ipad', IpadController::class);
+
+    Route::get('/checkin', [CheckinController::class, 'checkin'])->name('checkin');
+    Route::get('/checkout', [CheckinController::class, 'checkout'])->name('checkout');
 });
 
 require __DIR__.'/auth.php';
