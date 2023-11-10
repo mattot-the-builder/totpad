@@ -12,45 +12,60 @@ class CheckinController extends Controller
         return view('student.dashboard');
     }
 
+    public function checkinLog()
+    {
+        $checkinLogs = CheckinLog::where('user_id', auth()->user()->id)->latest()->paginate(10);
+        return view('student.checkin-log', compact('checkinLogs'));
+    }
+
     public function checkin()
     {
-        $user = auth()->user();
+        if (auth()->check()) {
 
-        if ($user->status == 'checkout') {
-            $user->update(['status' => 'checkin']);
+            $user = auth()->user();
 
-            $checkin = new CheckinLog();
-            $checkin->user_id = auth()->user()->id;
-            $checkin->action = 'checkin';
+            if ($user->status == 'checkout') {
+                $user->update(['status' => 'checkin']);
 
-            if ($checkin->save()) {
-                dd('checked in');
+                $checkin = new CheckinLog();
+                $checkin->user_id = auth()->user()->id;
+                $checkin->action = 'checkin';
+
+                if ($checkin->save()) {
+                    return redirect()->route('student.dashboard')->with('success', 'Checked in successfully');
+                } else {
+                    return redirect()->route('student.dashboard')->with('error', 'Failed to check in');
+                }
             } else {
-                dd('failed to check in ');
+                return redirect()->route('student.dashboard')->with('error', 'Already checked in');
             }
         } else {
-            dd('already check in');
+            return redirect()->route('login')->with('error', 'Please login first');
         }
+
     }
 
     public function checkout()
     {
-        $user = auth()->user();
-        if ($user->status == 'checkin') {
+        if (auth()->check()) {
 
-            $user->update(['status' => 'checkout']);
+            $user = auth()->user();
+            if ($user->status == 'checkin') {
 
-            $checkin = new CheckinLog();
-            $checkin->user_id = auth()->user()->id;
-            $checkin->action = 'checkout';
+                $user->update(['status' => 'checkout']);
 
-            if ($checkin->save()) {
-                dd('checked out');
+                $checkin = new CheckinLog();
+                $checkin->user_id = auth()->user()->id;
+                $checkin->action = 'checkout';
+
+                if ($checkin->save()) {
+                    return redirect()->route('student.dashboard')->with('success', 'Checked out successfully');
+                } else {
+                    return redirect()->route('student.dashboard')->with('error', 'Failed to check out');
+                }
             } else {
-                dd('failed to check out');
+                return redirect()->route('student.dashboard')->with('error', 'Already checked out');
             }
-        } else {
-            dd('already check out');
         }
     }
 }

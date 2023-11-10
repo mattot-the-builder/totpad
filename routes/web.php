@@ -25,23 +25,28 @@ Route::get('/', function () {
 
 Route::prefix('/student')->group(function () {
     Route::get('/dashboard', [CheckinController::class, 'dashboard'])->name('student.dashboard');
-});
+    Route::get('/checkin-log', [CheckinController::class, 'checkinLog'])->name('student.checkin-log');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/checkin', [CheckinController::class, 'checkin'])->name('student.checkin');
+    Route::get('/checkout', [CheckinController::class, 'checkout'])->name('student.checkout');
+})->middleware(['auth']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::prefix('/admin')->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
     Route::resource('checkin-log', CheckinLogController::class);
     Route::resource('student', StudentController::class);
     Route::resource('ipad', IpadController::class);
 
-    Route::get('/checkin', [CheckinController::class, 'checkin'])->name('checkin');
-    Route::get('/checkout', [CheckinController::class, 'checkout'])->name('checkout');
+})->middleware(['auth']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
