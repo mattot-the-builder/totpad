@@ -28,6 +28,7 @@ Route::prefix('/student')->middleware('student')->group(function () {
     Route::get('/checkin-log', [CheckinController::class, 'checkinLog'])->name('student.checkin-log');
     // Route::get('/ipad', [CheckinController::class, 'ipad'])->name('student.ipad');
     Route::view('/ipad', 'student.ipad')->name('student.ipad');
+    Route::post('/ipad', [IpadController::class, 'store'])->name('student.ipad.store');
     Route::put('/ipad/{ipad}', [CheckinController::class, 'updateIpad'])->name('student.ipad.update');
     Route::delete('/ipad/{ipad}', [CheckinController::class, 'destroyIpad'])->name('student.ipad.destroy');
 

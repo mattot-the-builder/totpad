@@ -1,7 +1,7 @@
 <x-app-layout>
     @if (auth()->user()->ipad)
         <div class="flex justify-center space-x-6" x-data="{ isOpen: false }">
-            <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card w-96 bg-base-100 shadow-xl" x-show="!isOpen">
                 <div class="card-body">
                     <h2 class="card-title">My iPad</h2>
                     <p>Model : <b>{{ auth()->user()->ipad->model }}</b> <br>
@@ -10,7 +10,7 @@
                         <form action="{{ route('student.ipad.destroy', auth()->user()->ipad) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-neutral">
+                            <button onclick="return confirm('Are you sure?')" type="submit" class="btn btn-neutral">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -63,7 +63,7 @@
         </div>
     @else
         <div class="flex justify-center space-x-6" x-data="{ isOpen: false }">
-            <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card w-96 bg-base-100 shadow-xl" x-show="!isOpen">
                 <div class="card-body text-center">
                     <p>No iPad detail associated with your account found</p>
                     <button class="btn btn-primary" @click="isOpen = true">Add</button>
@@ -73,7 +73,7 @@
             <div class="card w-96 bg-base-100 shadow-xl" x-show="isOpen">
                 <div class="card-body">
                     <h2 class="card-title">Add iPad</h2>
-                    <form action="{{ route('ipad.store') }}" method="POST">
+                    <form action="{{ route('student.ipad.store') }}" method="POST">
                         @csrf
                         <input type="text" name="model" placeholder="Model"
                             class="mb-3 input input-bordered w-full" />
