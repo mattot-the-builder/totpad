@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CheckinLog;
+use App\Models\Ipad;
 use Illuminate\Http\Request;
 
 class CheckinController extends Controller
@@ -17,6 +18,7 @@ class CheckinController extends Controller
         $checkinLogs = CheckinLog::where('user_id', auth()->user()->id)->latest()->paginate(10);
         return view('student.checkin-log', compact('checkinLogs'));
     }
+
 
     public function checkin()
     {
@@ -66,6 +68,24 @@ class CheckinController extends Controller
             } else {
                 return redirect()->route('student.dashboard')->with('error', 'Already checked out');
             }
+        }
+    }
+
+    public function updateIpad(Request $request, Ipad $ipad) {
+        $ipad->model = $request->model;
+        $ipad->serial_number = $request->serial_number;
+        if ($ipad->save()) {
+            return redirect()->route('student.ipad')->with('success', 'Ipad updated successfully');
+        } else {
+            return redirect()->route('student.ipad')->with('error', 'Failed to update ipad');
+        }
+    }
+
+    public function destroyIpad(Ipad $ipad) {
+        if ($ipad->delete()) {
+            return redirect()->route('student.ipad')->with('success', 'Ipad deleted successfully');
+        } else {
+            return redirect()->route('student.ipad')->with('error', 'Failed to delete ipad');
         }
     }
 }

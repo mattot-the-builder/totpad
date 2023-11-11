@@ -14,7 +14,6 @@ class Ipad extends Model
         'user_id',
         'serial_number',
         'model',
-        'isAvailable',
     ];
 
     public function user(): BelongsTo {

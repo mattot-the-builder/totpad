@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 @if (request()->route()->getPrefix() === '/student')
-                    <li><a>iPad</a></li>
+                    <li><a href="{{ route('student.ipad') }}">iPad</a></li>
                 @endif
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

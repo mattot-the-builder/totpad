@@ -26,6 +26,10 @@ Route::get('/', function () {
 Route::prefix('/student')->group(function () {
     Route::get('/dashboard', [CheckinController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/checkin-log', [CheckinController::class, 'checkinLog'])->name('student.checkin-log');
+    // Route::get('/ipad', [CheckinController::class, 'ipad'])->name('student.ipad');
+    Route::view('/ipad', 'student.ipad')->name('student.ipad');
+    Route::put('/ipad/{ipad}', [CheckinController::class, 'updateIpad'])->name('student.ipad.update');
+    Route::delete('/ipad/{ipad}', [CheckinController::class, 'destroyIpad'])->name('student.ipad.destroy');
 
     Route::get('/checkin', [CheckinController::class, 'checkin'])->name('student.checkin');
     Route::get('/checkout', [CheckinController::class, 'checkout'])->name('student.checkout');

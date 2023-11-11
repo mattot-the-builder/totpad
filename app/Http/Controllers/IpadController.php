@@ -29,7 +29,16 @@ class IpadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ipad = new Ipad();
+        $ipad->user_id = auth()->user()->id;
+        $ipad->model = $request->model;
+        $ipad->serial_number = $request->serial_number;
+
+        if ($ipad->save()) {
+            return redirect()->back()->with('success', 'Ipad added successfully');
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     /**
@@ -61,6 +70,11 @@ class IpadController extends Controller
      */
     public function destroy(Ipad $ipad)
     {
-        //
+        $ipad = Ipad::find($ipad->id);
+        if ($ipad->delete()) {
+            return redirect()->back()->with('success', 'Ipad deleted successfully');
+        } else {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 }
