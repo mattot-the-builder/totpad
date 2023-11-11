@@ -42,7 +42,10 @@ Route::prefix('/admin')->group(function () {
     })->name('dashboard');
 
     Route::resource('checkin-log', CheckinLogController::class);
+
     Route::resource('student', StudentController::class);
+    Route::post('/student/search', [StudentController::class, 'search'])->name('student.search');
+
     Route::resource('ipad', IpadController::class);
 
 })->middleware(['auth']);

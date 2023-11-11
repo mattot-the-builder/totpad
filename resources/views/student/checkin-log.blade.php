@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <div class="mx-auto card bg-base-100 shadow-xl">
         <div class="card-body">
@@ -8,8 +7,6 @@
                     <!-- head -->
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Student</th>
                             <th>Action</th>
                             <th>Time</th>
                         </tr>
@@ -17,9 +14,16 @@
                     <tbody>
                         @foreach ($checkinLogs as $checkin_log)
                             <tr class="hover">
-                                <th>{{ $checkin_log->id }}</th>
-                                <th>{{ $checkin_log->user->name }}</th>
-                                <td>{{ $checkin_log->action }}</td>
+                                <td>
+                                    <div
+                                        class="badge badge-lg {{ $checkin_log->action === 'checkin' ? 'badge-success' : 'badge-error' }}">
+                                        <svg class="w-2 h-2 mr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 512 512">
+                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+                                        </svg>
+                                        {{ $checkin_log->action }}
+                                    </div>
+                                </td>
                                 <td>{{ $checkin_log->created_at }}</td>
                             </tr>
                         @endforeach
