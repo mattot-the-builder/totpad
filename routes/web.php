@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('/student')->group(function () {
+Route::prefix('/student')->middleware('student')->group(function () {
     Route::get('/dashboard', [CheckinController::class, 'dashboard'])->name('student.dashboard');
     Route::get('/checkin-log', [CheckinController::class, 'checkinLog'])->name('student.checkin-log');
     // Route::get('/ipad', [CheckinController::class, 'ipad'])->name('student.ipad');
@@ -33,9 +33,9 @@ Route::prefix('/student')->group(function () {
 
     Route::get('/checkin', [CheckinController::class, 'checkin'])->name('student.checkin');
     Route::get('/checkout', [CheckinController::class, 'checkout'])->name('student.checkout');
-})->middleware(['auth']);
+});
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('admin')->group(function () {
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -48,7 +48,7 @@ Route::prefix('/admin')->group(function () {
 
     Route::resource('ipad', IpadController::class);
 
-})->middleware(['auth']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
