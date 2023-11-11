@@ -20,7 +20,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-base-200 dark:bg-base-300">
         <div>
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="{{ asset('smstmfp.svg') }}" class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </div>
 
