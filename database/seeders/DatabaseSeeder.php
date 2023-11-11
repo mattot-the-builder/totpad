@@ -28,22 +28,29 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        for ($i = 2; $i < 700; $i++) {
-            User::factory()->create();
-        }
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@test.com',
+            'role' => 'admin',
+            'password' => bcrypt('password'),
+        ]);
 
-        for ($i = 2; $i < 700; $i++) {
-            Ipad::factory()->create(['user_id' => $i]);
-        }
-
-
-        for ($i = 2; $i < 700; $i++) {
-            CheckinLog::factory()->create(['user_id' => $i]);
-            CheckinLog::factory()->create(['user_id' => $i]);
-            CheckinLog::factory()->create(['user_id' => $i]);
-            CheckinLog::factory()->create(['user_id' => $i]);
-            CheckinLog::factory()->create(['user_id' => $i]);
-            CheckinLog::factory()->create(['user_id' => $i]);
-        }
+        // for ($i = 2; $i < 700; $i++) {
+        //     User::factory()->create();
+        // }
+        //
+        // for ($i = 2; $i < 700; $i++) {
+        //     Ipad::factory()->create(['user_id' => $i]);
+        // }
+        //
+        //
+        // for ($i = 2; $i < 700; $i++) {
+        //     CheckinLog::factory()->create(['user_id' => $i]);
+        //     CheckinLog::factory()->create(['user_id' => $i]);
+        //     CheckinLog::factory()->create(['user_id' => $i]);
+        //     CheckinLog::factory()->create(['user_id' => $i]);
+        //     CheckinLog::factory()->create(['user_id' => $i]);
+        //     CheckinLog::factory()->create(['user_id' => $i]);
+        // }
     }
 }
