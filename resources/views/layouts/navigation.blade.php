@@ -42,6 +42,9 @@
                 @if (request()->route()->getPrefix() === '/student')
                     <li><a href="{{ route('student.ipad') }}">iPad</a></li>
                 @endif
+                <li>
+                    <button onclick="my_modal_1.showModal()">About</button>
+                </li>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-sm btn-wide w-full mt-2">
