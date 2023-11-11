@@ -4,9 +4,9 @@
             <div class="card w-96 bg-base-100 shadow-xl">
                 <div class="card-body">
                     <h2 class="card-title">My iPad</h2>
-                    <p>Model : <b>{{ auth()->user()->ipad->model }}</b></p>
-                    <p>Serial Number : <b>{{ auth()->user()->ipad->serial_number }}</b></p>
-                    <div class="flex justify-end space-x-2">
+                    <p>Model : <b>{{ auth()->user()->ipad->model }}</b> <br>
+                        Serial Number : <b>{{ auth()->user()->ipad->serial_number }}</b></p>
+                    <div class="card-actions justify-end space-x-2 items-center">
                         <form action="{{ route('student.ipad.destroy', auth()->user()->ipad) }}" method="POST">
                             @csrf
                             @method('DELETE')

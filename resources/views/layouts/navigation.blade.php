@@ -25,10 +25,8 @@
     </div>
     <div class="navbar-end">
         <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                    <img src="https://picsum.photos/200" />
-                </div>
+            <label tabindex="0" class="btn btn-ghost normal-case">
+                <h2>{{ auth()->user()->name }} </h2>
             </label>
             <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
